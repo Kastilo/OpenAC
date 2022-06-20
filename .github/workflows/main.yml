@@ -8,15 +8,13 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@main
-      
-    - name: Copiler
-      uses: Sirherobrine23/Actions-Build-Openwrt@javascript
+
+    - uses: Sirherobrine23/Actions-Build-Openwrt@main
       with:
-        CONFIG: '.config'
+        config: ".config"
 
     - name: Upload To Releases
       uses: softprops/action-gh-release@v1
-      if: env.UPLOADTORELEASE == 'true'
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
@@ -33,18 +31,3 @@ jobs:
         delete_tags: true
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-  URL:
-    description: 'Git Repository URL'
-    required: true
-    default: 'https://git.openwrt.org/openwrt/openwrt.git'
-
-  BRANCH:
-    description: 'Git Repository Branch'
-    required: true
-    default: 'master'
-
-  CONFIG:
-    description: 'Openwrt Build File'
-    required: true
-    default: '.config'
