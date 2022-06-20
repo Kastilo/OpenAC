@@ -9,6 +9,12 @@ jobs:
     - name: Checkout
       uses: actions/checkout@main
 
+    - name: Insert New
+      run: git clone -b master https://github.com/jerrykuku/luci-theme-argon package/luci-theme-argon
+
+    - name: Update feeds
+      run: git clone -b master https://github.com/jerrykuku/luci-app-argon-config package/luci-app-argon-config
+
     - uses: Sirherobrine23/Actions-Build-Openwrt@main
       with:
         config: ".config"
